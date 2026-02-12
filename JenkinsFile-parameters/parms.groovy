@@ -1,29 +1,34 @@
 pipeline {
     agent any 
     parameters {
-        string(name: 'DB_NAME', defaultValue: 'production', description: 'Choose the database name')
-        booleanParam(name: 'CONFIRM_MIGRATION', defaultValue: true, description: 'Do you want to migrate?')
+        booleanParam(name: 'SKIP_TESTS', 
+        defaultValue: false, 
+        description: 'Do you want to skip the tests?')
     }
     stages {
-        stage('Database Migration') {
-            when {
-                expression { 
-                    return params.DB_NAME == 'production' && params.CONFIRM_MIGRATION.toBoolean() 
-                }
-            }
+        stage('checkout') {
             steps {
-                echo "Executing database migration in ${params.DB_NAME}"
+                echo "checking out the source code"
             }
         }
 
-        stage('Skipping Migration Notification') {
+        stage('Tests') {
             when {
                 expression { 
-                    return !(params.DB_NAME == 'production' && params.CONFIRM_MIGRATION.toBoolean())
+                    params.SKIP_TESTS == true
                 }
             }
-            steps {
-                echo "Skipping migration: Criteria not met for ${params.DB_NAME}"
+            parallel{
+                stage('Unit-test'){
+                    steps{
+                        echo "executing the unit tets"
+                    }
+                }
+                stage('Performence-test'){
+                    steps{
+                        echo "Executing the performence tests"
+                    }
+                }
             }
         }
     }
