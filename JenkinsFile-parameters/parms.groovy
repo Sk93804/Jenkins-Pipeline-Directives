@@ -1,7 +1,7 @@
 pipeline{
     agent any 
     parameters{
-        string(name: 'DB_NAME', defaultValue: 'production', description: 'Choose the database name'),
+        string(name: 'DB_NAME', defaultValue: 'production', description: 'Choose the database name')
         booleanParam(name:'CONFIRM_MIGRATION', defaultValue: true , description: 'Do you want to migrate?')
     }
     stages{
