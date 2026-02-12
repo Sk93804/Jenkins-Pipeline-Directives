@@ -15,7 +15,7 @@ pipeline {
         stage('Tests') {
             when {
                 expression { 
-                    params.SKIP_TESTS == true
+                    params.SKIP_TESTS.toBoolean() == false
                 }
             }
             parallel{
