@@ -4,8 +4,8 @@ pipeline {
         booleanParam(name: 'SKIP_UNIT_TESTS', 
                      defaultValue: false, 
                      description: 'Do you want to skip the tests?')
-        booleanParam(name: 'SKIP_PERFORMENCE_TESTS'
-                     defaultValue: false 
+        booleanParam(name: 'SKIP_PERFORMENCE_TESTS',
+                     defaultValue: false,
                      description: 'Do you want to skip the performence tests?') 
     }
     stages {
