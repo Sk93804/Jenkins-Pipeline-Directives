@@ -7,28 +7,24 @@ pipeline {
     stages {
         stage('Database Migration') {
             when {
-                allOf { 
-                    expression { params.DB_NAME == 'production' }
-                    expression { params.CONFIRM_MIGRATION == true }
+                expression { 
+                    return params.DB_NAME == 'production' && params.CONFIRM_MIGRATION.toBoolean() 
                 }
             }
             steps {
-                echo "executing database migration in ${params.DB_NAME}"
+                echo "Executing database migration in ${params.DB_NAME}"
             }
-        } // End of Database Migration stage
+        }
 
         stage('Skipping Migration Notification') {
             when {
-                not {
-                    allOf {
-                        expression { params.DB_NAME == 'production' }
-                        expression { params.CONFIRM_MIGRATION == true }
-                    }
+                expression { 
+                    return !(params.DB_NAME == 'production' && params.CONFIRM_MIGRATION.toBoolean())
                 }
             }
             steps {
                 echo "Skipping migration: Criteria not met for ${params.DB_NAME}"
             }
-        } // End of Skipping Migration Notification stage
-    } // End of stages
-} // End of pipeline
+        }
+    }
+}
