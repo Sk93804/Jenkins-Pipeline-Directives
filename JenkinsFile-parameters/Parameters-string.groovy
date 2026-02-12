@@ -9,7 +9,7 @@ pipeline{
                 expression{ params.BRANCH == 'main'}          
            }
            steps{
-            sh 'Checking out the repository with main branch'
+            echo 'Checking out the repository with main branch'
            }
         }
     }
