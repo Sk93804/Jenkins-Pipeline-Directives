@@ -5,8 +5,9 @@ The following are the different types of parameters that Jenkins supports in the
 
 ## 1) String: it's  a text-based input 
 
-### Common Use cases: 
-####-> Versions: 1.2.3, v2-stable
-####-> Environment Names: production, staging-blue
-####-> Git Branches: feature/login-fix, main
-####-> Usernames or API Keys: (Though for keys, we usually use the "Secret Text" type for safety ).
+**Common Use Cases:**
+- Versions: 1.2.3, v2-stable
+- Environment Names: production, staging-blue
+- Git Branches: feature/login-fix, main
+- Usernames or API Keys (for keys, use Secret Text type for safety)
+
