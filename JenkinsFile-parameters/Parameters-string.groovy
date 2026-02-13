@@ -11,6 +11,6 @@ pipeline{
            steps{
             echo 'Checking out the repository with main branch'
            }
-        }
+        } 
     }
 }
