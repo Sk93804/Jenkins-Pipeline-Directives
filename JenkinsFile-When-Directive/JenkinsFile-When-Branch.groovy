@@ -17,13 +17,13 @@ pipeline{
             parallel{
                 stage('Unit_Test'){
                     when{
-                        expression{ ${env.BRANCH} == 'main'}
+                        expression{ env.BRANCH == 'main'}
                     }
                     steps{
                         echo "executing the unit tests"
                     }
                 }
-                stage('Functon_test'){
+                stage('Function_test'){
                     when{
                         branch 'Feat/*'
                     }
