@@ -3,6 +3,9 @@ pipeline{
     options{
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
+    environment {
+        BRANCH = 'main'
+    }
     stages{
         stage('Code_checkout'){
             steps{
@@ -14,7 +17,7 @@ pipeline{
             parallel{
                 stage('Unit_Test'){
                     when{
-                        branch 'main'
+                        {$env.BRANCH} == 'main'
                     }
                     steps{
                         echo "executing the unit tests"
