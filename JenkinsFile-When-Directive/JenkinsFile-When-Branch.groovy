@@ -17,7 +17,7 @@ pipeline{
             parallel{
                 stage('Unit_Test'){
                     when{
-                        {$env.BRANCH} == 'main'
+                        ${env.BRANCH} == 'main'
                     }
                     steps{
                         echo "executing the unit tests"
