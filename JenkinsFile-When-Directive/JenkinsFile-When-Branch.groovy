@@ -2,6 +2,7 @@ pipeline{
     agent any
     options{
         buildDiscarder(logRotator(numToKeepStr: '5'))
+        timestamps()
     }
     environment {
         BRANCH = 'main'
@@ -24,8 +25,10 @@ pipeline{
                     }
                 }
                 stage('Function_test'){
+                    //Note: The branch keyword inside 'when' block works only for the Multipipeline branches.
+                    // Branch name is injected to  the jenkins built in var called "BRANCH_NAME"
                     when{
-                        branch 'Feat/*'
+                        branch 'Feat/*'  
                     }
                     steps{
                         echo "Executing the functional tests"
